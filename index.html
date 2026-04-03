@@ -54,3 +54,57 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>???</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: black;
+      overflow: hidden;
+    }
+
+    img {
+      position: absolute;
+      width: 150px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<script>
+  const gifs = [
+    "gif1.gif",
+    "gif2.gif",
+    "gif3.gif"
+  ];
+
+  function spawnGif() {
+    const img = document.createElement("img");
+
+    // สุ่ม gif
+    img.src = gifs[Math.floor(Math.random() * gifs.length)];
+
+    // สุ่มตำแหน่ง
+    img.style.left = Math.random() * window.innerWidth + "px";
+    img.style.top = Math.random() * window.innerHeight + "px";
+
+    document.body.appendChild(img);
+  }
+
+  // สร้างทีเดียว 10 ตัว
+  for (let i = 0; i < 10; i++) {
+    spawnGif();
+  }
+
+  // โผล่เพิ่มเรื่อย ๆ (ทุก 0.5 วิ)
+  setInterval(spawnGif, 500);
+</script>
+
+</body>
+</html>
