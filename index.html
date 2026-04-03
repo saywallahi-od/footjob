@@ -1,17 +1,58 @@
-<style>
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: black;
-    color: white;
-    flex-direction: column;
-    font-family: Arial;
-  }
-</style>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>555</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    img {
+      margin-top: 20px;
+      max-width: 300px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
 
 <body>
-  <p>โดนหลอก 555</p>
-  <img src="msabers-introduction-in-vn-v0-wodx30ff6ku61.webp" width="300">
+
+  <h1 id="text">...</h1>
+  <img id="meme" src="">
+
+  <script>
+    const texts = [
+      "โดนหลอก 555",
+      "กดมาทำไมเนี่ย",
+      "เสียเวลาไปอีก 3 วิ",
+      "ยังไม่ออกอีกเหรอ 😂",
+      "เว็บนี้ไม่มีอะไรจริงๆ"
+    ];
+
+    const images = [
+      "https://i.imgur.com/1.jpg",
+      "https://i.imgur.com/2.jpg",
+      "https://i.imgur.com/3.jpg"
+    ];
+
+    // สุ่มข้อความ
+    const randomText = texts[Math.floor(Math.random() * texts.length)];
+    document.getElementById("text").innerText = randomText;
+
+    // สุ่มรูป
+    const randomImg = images[Math.floor(Math.random() * images.length)];
+    document.getElementById("meme").src = randomImg;
+  </script>
+
 </body>
+</html>
