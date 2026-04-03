@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>YeAH</title>
+  <title>Yeah</title>
 
   <style>
-    
     body {
       margin: 0;
-      height: 200vh;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       background: black;
       color: white;
-      font-family: Arial, sans-serif;
+      font-family: Arial;
       text-align: center;
     }
 
+    .images {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
     img {
-      margin-top: 50px;
-      max-width: 500px;
+      max-width: 200px;
       border-radius: 10px;
     }
   </style>
 </head>
-  <body>
+
+<body>
 
   <h1 id="text">...</h1>
 
@@ -34,85 +39,36 @@
     <img id="img2">
   </div>
 
-
-</body>
   <script>
     const texts = [
-      "Im so WEEBBB!!",
-      "私はオタクです。",
-      "บาก่ะฮ์",
-      "YattaAAA!"
+      "โดนหลอก 555",
+      "ยังไม่ออกอีกเหรอ",
+      "เสียเวลาไปฟรีๆ",
+      "เว็บไม่มีอะไรจริงๆ"
     ];
 
-   const images = [
-  "downloadK.png",
-  "downloado.png ",
-  "downloadS.png",
-     "downloadM.png"
-];
+    const images = [
+      "downloado.png",
+      "downloadS.png",
+      "downloadK.png",
+      "downloadM.png"
+    ];
 
     // สุ่มข้อความ
-    const randomText = texts[Math.floor(Math.random() * texts.length)];
-    document.getElementById("text").innerText = randomText;
+    document.getElementById("text").innerText =
+      texts[Math.floor(Math.random() * texts.length)];
 
-    // สุ่มรูป
-    const randomImg = images[Math.floor(Math.random() * images.length)];
-    document.getElementById("meme").src = randomImg;
+    // สุ่มรูป 2 รูป (ไม่ให้ซ้ำ)
+    let i1 = Math.floor(Math.random() * images.length);
+    let i2;
+
+    do {
+      i2 = Math.floor(Math.random() * images.length);
+    } while (i1 === i2);
+
+    document.getElementById("img1").src = images[i1];
+    document.getElementById("img2").src = images[i2];
   </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>???</title>
-
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: black;
-      overflow: hidden;
-    }
-
-    img {
-      position: absolute;
-      width: 150px;
-      pointer-events: none;
-    }
-  </style>
-</head>
-
-<body>
-
-<script>
-  const gifs = [
-    "gif1.gif",
-    "gif2.gif",
-    "gif3.gif"
-  ];
-
-  function spawnGif() {
-    const img = document.createElement("img");
-
-    // สุ่ม gif
-    img.src = gifs[Math.floor(Math.random() * gifs.length)];
-
-    // สุ่มตำแหน่ง
-    img.style.left = Math.random() * window.innerWidth + "px";
-    img.style.top = Math.random() * window.innerHeight + "px";
-
-    document.body.appendChild(img);
-  }
-
-  // สร้างทีเดียว 10 ตัว
-  for (let i = 0; i < 10; i++) {
-    spawnGif();
-  }
-
-  // โผล่เพิ่มเรื่อย ๆ (ทุก 0.5 วิ)
-  setInterval(spawnGif, 500);
-</script>
 
 </body>
 </html>
