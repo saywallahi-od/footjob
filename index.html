@@ -4,6 +4,23 @@
   <title>Yeah</title>
 
   <style>
+    .floating-gif {
+  position: absolute;
+  width: 100px;
+  pointer-events: none;
+  animation: float 5s linear infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-800px) rotate(360deg);
+    opacity: 0;
+  }
+}
     body {
       margin: 0;
       height: 100vh;
@@ -29,7 +46,6 @@
     }
   </style>
 </head>
-
 <body>
 
   <h1 id="text">...</h1>
@@ -40,11 +56,41 @@
   </div>
 
   <script>
+    const gifs = [
+  "gif1.gif",
+  "gif2.gif",
+  "gif3.gif"
+];
+
+function spawnGif() {
+  const gif = document.createElement("img");
+  gif.src = gifs[Math.floor(Math.random() * gifs.length)];
+  gif.className = "floating-gif";
+
+  // สุ่มตำแหน่งแนวนอน
+  gif.style.left = Math.random() * window.innerWidth + "px";
+
+  // เริ่มจากด้านล่างจอ
+  gif.style.top = window.innerHeight + "px";
+
+  // สุ่มขนาด
+  gif.style.width = (50 + Math.random() * 100) + "px";
+
+  document.body.appendChild(gif);
+
+  // ลบออกหลัง animation จบ
+  setTimeout(() => {
+    gif.remove();
+  }, 5000);
+}
+
+// สร้างกิฟใหม่ทุก 500ms
+setInterval(spawnGif, 500);
     const texts = [
-      "โดนหลอก 555",
-      "ยังไม่ออกอีกเหรอ",
-      "เสียเวลาไปฟรีๆ",
-      "เว็บไม่มีอะไรจริงๆ"
+      "Im fucking WEEB!!",
+      "Hi LOL",
+      "DM pls",
+      "Bruh"
     ];
 
     const images = [
