@@ -62,59 +62,63 @@
   "1051082n9y27qwafc.gif"
 ];
 
+// 🔥 จำกัดจำนวน GIF
+let maxGifs = 10;
+let currentGifs = 0;
+
 function spawnGif() {
+  if (currentGifs >= maxGifs) return;
+
   const gif = document.createElement("img");
   gif.src = gifs[Math.floor(Math.random() * gifs.length)];
   gif.className = "floating-gif";
 
-  // สุ่มตำแหน่งแนวนอน
   gif.style.left = Math.random() * window.innerWidth + "px";
-
-  // เริ่มจากด้านล่างจอ
   gif.style.top = window.innerHeight + "px";
-
-  // สุ่มขนาด
-  gif.style.width = (50 + Math.random() * 100) + "px";
+  gif.style.width = (50 + Math.random() * 80) + "px";
 
   document.body.appendChild(gif);
+  currentGifs++;
 
-  // ลบออกหลัง animation จบ
   setTimeout(() => {
     gif.remove();
+    currentGifs--;
   }, 5000);
 }
 
-// สร้างกิฟใหม่ทุก 500ms
-setInterval(spawnGif, 500);
-    const texts = [
-      "Im fucking WEEB!!",
-      "Hi LOL",
-      "DM pls",
-      "Bruh"
-    ];
+// 🔥 ช้าลง = ลื่นขึ้น
+setInterval(spawnGif, 1000);
 
-    const images = [
-      "downloado.png",
-      "downloadS.png",
-      "downloadK.png",
-      "downloadM.png"
-    ];
 
-    // สุ่มข้อความ
-    document.getElementById("text").innerText =
-      texts[Math.floor(Math.random() * texts.length)];
 
-    // สุ่มรูป 2 รูป (ไม่ให้ซ้ำ)
-    let i1 = Math.floor(Math.random() * images.length);
-    let i2;
+const texts = [
+  "Im WEEB!!",
+  "Hi LOL",
+  "DM pls",
+  "Bruh"
+];
 
-    do {
-      i2 = Math.floor(Math.random() * images.length);
-    } while (i1 === i2);
+const images = [
+  "downloado.png",
+  "downloadS.png",
+  "downloadK.png",
+  "downloadM.png"
+];
 
-    document.getElementById("img1").src = images[i1];
-    document.getElementById("img2").src = images[i2];
-  </script>
+// สุ่มข้อความ
+document.getElementById("text").innerText =
+  texts[Math.floor(Math.random() * texts.length)];
+
+// สุ่มรูป 2 รูป (ไม่ให้ซ้ำ)
+let i1 = Math.floor(Math.random() * images.length);
+let i2;
+
+do {
+  i2 = Math.floor(Math.random() * images.length);
+} while (i1 === i2);
+
+document.getElementById("img1").src = images[i1];
+document.getElementById("img2").src = images[i2];
 
 </body>
 </html>
