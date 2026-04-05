@@ -4,23 +4,6 @@
   <title>Yeah</title>
 
   <style>
-    .floating-gif {
-  position: absolute;
-  width: 100px;
-  pointer-events: none;
-  animation: float 5s linear infinite;
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-800px) rotate(360deg);
-    opacity: 0;
-  }
-}
     body {
       margin: 0;
       height: 100vh;
@@ -32,23 +15,58 @@
       color: white;
       font-family: Arial;
       text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-bottom: 10px;
     }
 
     .images {
       display: flex;
       gap: 20px;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     img {
       max-width: 200px;
       border-radius: 10px;
     }
+
+    button {
+      margin-top: 15px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* GIF ลอย */
+    .floating-gif {
+      position: absolute;
+      pointer-events: none;
+      animation: float 5s linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-800px) rotate(360deg);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <h1 id="text">...</h1>
+
+  <button onclick="toggleGif()">Toggle GIF Chaos 💀</button>
 
   <div class="images">
     <img id="img1">
@@ -56,69 +74,73 @@
   </div>
 
   <script>
+    // ====== ข้อความ ======
+    const texts = [
+      "Im WEEB!!",
+      "Hi LOL",
+      "DM pls",
+      "Bruh"
+    ];
+
+    document.getElementById("text").innerText =
+      texts[Math.floor(Math.random() * texts.length)];
+
+    // ====== รูป ======
+    const images = [
+      "downloado.png",
+      "downloadS.png",
+      "downloadK.png",
+      "downloadM.png"
+    ];
+
+    let i1 = Math.floor(Math.random() * images.length);
+    let i2;
+
+    do {
+      i2 = Math.floor(Math.random() * images.length);
+    } while (i1 === i2);
+
+    document.getElementById("img1").src = images[i1];
+    document.getElementById("img2").src = images[i2];
+
+    // ====== GIF SYSTEM ======
     const gifs = [
-  "1edbf144909f2bbfcff412393422984c.gif",
-  "14406a6326bac5ccac8a3f09a122dcac.gif",
-  "1051082n9y27qwafc.gif"
-];
+      "1edbf144909f2bbfcff412393422984c.gif",
+      "14406a6326bac5ccac8a3f09a122dcac.gif",
+      "1051082n9y27qwafc.gif"
+    ];
 
-// 🔥 จำกัดจำนวน GIF
-let maxGifs = 10;
-let currentGifs = 0;
+    let maxGifs = 10;
+    let currentGifs = 0;
+    let running = true;
 
-function spawnGif() {
-  if (currentGifs >= maxGifs) return;
+    function spawnGif() {
+      if (!running) return;
+      if (currentGifs >= maxGifs) return;
 
-  const gif = document.createElement("img");
-  gif.src = gifs[Math.floor(Math.random() * gifs.length)];
-  gif.className = "floating-gif";
+      const gif = document.createElement("img");
+      gif.src = gifs[Math.floor(Math.random() * gifs.length)];
+      gif.className = "floating-gif";
 
-  gif.style.left = Math.random() * window.innerWidth + "px";
-  gif.style.top = window.innerHeight + "px";
-  gif.style.width = (50 + Math.random() * 80) + "px";
+      gif.style.left = Math.random() * window.innerWidth + "px";
+      gif.style.top = window.innerHeight + "px";
+      gif.style.width = (50 + Math.random() * 80) + "px";
 
-  document.body.appendChild(gif);
-  currentGifs++;
+      document.body.appendChild(gif);
+      currentGifs++;
 
-  setTimeout(() => {
-    gif.remove();
-    currentGifs--;
-  }, 5000);
-}
+      setTimeout(() => {
+        gif.remove();
+        currentGifs--;
+      }, 5000);
+    }
 
-// 🔥 ช้าลง = ลื่นขึ้น
-setInterval(spawnGif, 1000);
+    setInterval(spawnGif, 900);
 
-
-
-const texts = [
-  "Im WEEB!!",
-  "Hi LOL",
-  "DM pls",
-  "Bruh"
-];
-
-const images = [
-  "downloado.png",
-  "downloadS.png",
-  "downloadK.png",
-  "downloadM.png"
-];
-
-// สุ่มข้อความ
-document.getElementById("text").innerText =
-  texts[Math.floor(Math.random() * texts.length)];
-
-// สุ่มรูป 2 รูป (ไม่ให้ซ้ำ)
-let i1 = Math.floor(Math.random() * images.length);
-let i2;
-
-do {
-  i2 = Math.floor(Math.random() * images.length);
-} while (i1 === i2);
-
-document.getElementById("img1").src = images[i1];
-document.getElementById("img2").src = images[i2];
+    // ปุ่มเปิด/ปิด
+    function toggleGif() {
+      running = !running;
+    }
+  </script>
 
 </body>
-</html>
